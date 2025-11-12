@@ -30,7 +30,7 @@ jobs:
         continue-on-error: true
 
       - name: Run SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v1.1
+        uses: SonarSource/sonarqube-scan-action@v2
         with:
           projectBaseDir: .
           args: >

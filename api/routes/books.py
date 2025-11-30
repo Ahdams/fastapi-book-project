@@ -1,3 +1,4 @@
+from fastapi import APIRouter, status, HTTPException
 
 from typing import OrderedDict
 
@@ -55,6 +56,16 @@ async def update_book(book_id: int, book: Book) -> Book:
         status_code=status.HTTP_200_OK,
         content=db.update_book(book_id, book).model_dump(),
     )
+
+@router.get("/{book_id}", response_model=Book, status_code=status.HTTP_200_OK)
+async def get_book(book_id: int) -> Book:
+    book = db.get_book(book_id)
+    if not book:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Book with id {book_id} not found.",
+        )
+    return book
 
 
 @router.delete("/{book_id}", status_code=status.HTTP_204_NO_CONTENT)

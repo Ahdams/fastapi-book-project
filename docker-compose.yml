@@ -1,11 +1,11 @@
-version: "3.8"
+version: "3.9"
 
 services:
   fastapi:
     build: .
     container_name: fastapi
-    ports:
-      - "8000:8000"     # REQUIRED for local access
+    expose:
+      - "8000"     # REQUIRED for local access
     restart: unless-stopped
     networks:
       - appnet

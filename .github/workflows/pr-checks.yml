@@ -45,7 +45,7 @@ jobs:
 
       - name: Run pip-audit
         run: |
-          pip-audit --require-hashes || exit 1
+          pip-audit -r requirements.txt
 
       - name: Build Docker image
         uses: docker/build-push-action@v4
